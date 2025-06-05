@@ -62,7 +62,7 @@ export class Tab4Page {
 
     this.statusMessage = 'Starting firmware download...';
 
-    this.http.post('http://localhost:3000/download-keys', {
+    this.http.post('https://node-downloadserver.onrender.com/download-keys', {
       url,
       basePath,
       type: "tool",
@@ -96,7 +96,7 @@ export class Tab4Page {
 
     this.statusMessage = 'Starting firmware download...';
 
-    this.http.post('http://localhost:3000/download-emulator', {
+    this.http.post('https://node-downloadserver.onrender.com/download-emulator', {
       url,
       fileName,
       basePath,
@@ -137,7 +137,7 @@ export class Tab4Page {
     if (!this.selectedFolder) return this.presentToast('Please select a folder first.', 'warning');
 
     localStorage.setItem('baseFolderPath', this.selectedFolder);
-    this.http.post('http://localhost:3000/create-folders', {
+    this.http.post('https://node-downloadserver.onrender.com/create-folders', {
       basePath: this.selectedFolder
     }).subscribe({
       next: (res: any) => this.presentToast('Folder setup complete.', 'success'),
@@ -184,7 +184,7 @@ export class Tab4Page {
       return;
     }
 
-    this.http.post('http://localhost:3000/extract', {
+    this.http.post('https://node-downloadserver.onrender.com/extract', {
       archivePath: filePath,
       targetDir: `${basePath}/${type}`
     }).subscribe({

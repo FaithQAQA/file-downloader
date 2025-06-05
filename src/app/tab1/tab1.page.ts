@@ -63,7 +63,7 @@ download(emulator: any) {
 
   const fileName = url.split('/').pop();
 
-  this.http.post('http://localhost:3000/download-emulator', {
+  this.http.post('https://node-downloadserver.onrender.com/download-emulator', {
     url,
     fileName,
     basePath,

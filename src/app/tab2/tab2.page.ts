@@ -68,10 +68,9 @@ download(item: any) {
     destinationType = 'wiigames';
   }
 
-  // 🔵 Start spinner for this item
   this.loadingId = item.id;
 
-  this.http.post('http://localhost:3000/download-dynamic', {
+  this.http.post('https://node-downloadserver.onrender.com/download-dynamic', {
     url,
     fileName,
     basePath,
