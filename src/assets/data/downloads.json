@@ -1,0 +1,157 @@
+{
+  "downloads": [
+    {
+      "type": "game",
+      "title": "Mario Kart Wii",
+      "image": "https://cdn2.steamgriddb.com/logo/63d4cd43646876727448aa8e6b9f7a51.png",
+      "downloadUrl": "https://vimm.net/vault/63650"
+
+    },
+
+      {
+      "type": "game",
+      "title": "Mario Party Superstars",
+      "image": "https://assets.nintendo.com/image/upload/q_auto/f_auto/ncom/software/switch/70010000042934/ae43ce2e25afbc4c069c2920075ead01a84f02dfe55b87876268409f6ccc0304",
+      "downloadUrl": "https://www.ziperto.com/mario-party-superstars-switch/"
+
+    },
+
+         {
+      "type": "game",
+      "title": "Smash Bros",
+      "image": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000012332/ac4d1fc9824876ce756406f0525d50c57ded4b2a666f6dfe40a6ac5c3563fad9",
+      "downloadUrl": "https://www.ziperto.com/super-smash-bros-ultimate-switch/"
+
+    },
+
+
+
+         {
+      "type": "game",
+      "title": "Super Mario Party™ Jamboree",
+      "image": "https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/ncom/software/switch/70010000084608/ba0572bf9d840b03bf9958809943fb3c76c3adfd6d8f2704b0f1b766f8aa4027",
+      "downloadUrl": "https://www.ziperto.com/super-mario-party-jamboree-switch/"
+
+    },
+
+
+            {
+      "type": "game",
+      "title": "Luigi’s Mansion™ 3",
+      "image": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000001620/2b166fb3197dacfde1d939acd6a976b9fbe3b1a32c54f9f0d2c8d23efb22412d",
+      "downloadUrl": "https://nxbrew.net/luigis-mansion-3-switch-nsp-xci-nsz/"
+
+    },
+
+
+
+      {
+      "type": "game",
+      "title": "Mario Kart Wii",
+      "image": "https://cdn2.steamgriddb.com/logo/63d4cd43646876727448aa8e6b9f7a51.png",
+      "downloadUrl": "https://vimm.net/vault/63650"
+
+    },
+    {
+      "type": "emulator",
+      "title": "Eden",
+      "image": "https://eden-emulator.github.io/img/logofavicon2.png",
+      "downloadUrl": "https://github.com/eden-emulator/Releases/releases/download/0.0.2-pre-alpha/Eden-Windows-MSVC-0.0.2-pre-alpha-amd64.zip"
+
+
+    },
+      {
+      "type": "emulator",
+      "title": "Cemu",
+      "image": "https://cdn2.steamgriddb.com/grid/7cb846280bd487e795a19c7d7b23bb53.png",
+      "downloadUrl": "https://github.com/cemu-project/Cemu/releases/download/v2.6/cemu-2.6-windows-x64.zip"
+
+    },
+
+      {
+      "type": "emulator",
+      "title": "Dolphin",
+      "image": "https://static1.xdaimages.com/wordpress/wp-content/uploads/2020/05/dolphin-emulator.jpg",
+      "downloadUrl": "https://dl.dolphin-emu.org/releases/2506/dolphin-2506-x64.7z"
+
+    },
+     {
+      "type": "game",
+      "title": "Mario Kart 8",
+      "image": "https://www.nintendo.com/eu/media/images/10_share_images/games_15/wiiu_14/SI_WiiU_MarioKart8_image1600w.jpg",
+      "downloadUrl": "https://github.com/Xpl0itU/WiiUDownloader/releases/download/v2.29/WiiUDownloader-Windows.zip"
+    },
+       {
+      "type": "game",
+      "title": "Mario kart 8 deluxe",
+      "image": "https://assets.nintendo.com/image/upload/c_limit,f_auto,h_300,q_auto,w_500/v1/ncom/en_US/games/switch/m/mario-kart-8-deluxe-switch/Video/posters/Switch_Mario_Kart_8_Deluxe_Accolades_Trailer",
+      "downloadUrl": "https://www.ziperto.com/mario-kart-8-deluxe-switch/"
+    },
+    {
+      "type": "dlc",
+      "title": "Mario kart 8 deluxe dlc pack",
+      "image": "https://assets.nintendo.com/image/upload/c_limit,f_auto,h_300,q_auto,w_500/v1/ncom/en_US/games/switch/m/mario-kart-8-deluxe-switch/Video/posters/Switch_Mario_Kart_8_Deluxe_Accolades_Trailer",
+      "downloadUrl": "https://www.ziperto.com/mario-kart-8-deluxe-switch/"
+    },
+        {
+      "type": "dlc",
+      "title": "Mario kart 8 dlc",
+      "image": "https://www.nintendo.com/eu/media/images/10_share_images/games_15/wiiu_14/SI_WiiU_MarioKart8_image1600w.jpg",
+      "downloadUrl": "https://github.com/Xpl0itU/WiiUDownloader/releases/download/v2.29/WiiUDownloader-Windows.zip"
+    },
+
+
+
+    {
+      "type": "updates",
+      "title": "Mario kart 8 update",
+      "image": "https://www.nintendo.com/eu/media/images/10_share_images/games_15/wiiu_14/SI_WiiU_MarioKart8_image1600w.jpg",
+      "downloadUrl": "https://github.com/Xpl0itU/WiiUDownloader/releases/download/v2.29/WiiUDownloader-Windows.zip"
+    },
+    {
+      "type": "updates",
+      "title": "Mario kart 8 deluxe update",
+      "image": "https://assets.nintendo.com/image/upload/c_limit,f_auto,h_300,q_auto,w_500/v1/ncom/en_US/games/switch/m/mario-kart-8-deluxe-switch/Video/posters/Switch_Mario_Kart_8_Deluxe_Accolades_Trailer",
+      "downloadUrl": "https://www.ziperto.com/mario-kart-8-deluxe-switch/"
+    },
+    {
+      "type": "tool",
+      "title": "Ver19 Switch Fireware",
+      "image": "https://static.thenounproject.com/png/3558883-200.png",
+      "downloadUrl": "https://github.com/THZoria/NX_Firmware/releases/download/19.0.0/Firmware.19.0.0.zip"
+    },
+    {
+      "type": "tool",
+      "title": "WiiuDownloader",
+      "image": "https://static-00.iconduck.com/assets.00/tool-icon-2048x2038-u3cj2gqb.png",
+      "downloadUrl": "https://github.com/Xpl0itU/WiiUDownloader/releases/download/v2.29/WiiUDownloader-Windows.zip"
+    },
+    {
+      "type": "tool",
+      "title": "WheelWizard",
+      "image": "https://github.com/TeamWheelWizard/.github/raw/main/images/WheelWizard_text_icon.png",
+      "downloadUrl": "https://github.com/TeamWheelWizard/WheelWizard/releases/download/2.2.1/WheelWizardWindows.exe"
+    }
+
+  ],
+  "bundles": [
+    {
+      "name": "Emulator Starter Pack",
+      "items": [
+        "eden",
+        "Firmware 19",
+        "Prod Key"
+      ],
+      "image": "assets/images/persona-bundle.jpg"
+    },
+    {
+      "name": "Emulation Game Starter Pack",
+      "items": [
+        "Mario kart 8 deluxe",
+        "Mario kart 8 deluxe Update",
+        "Mario kart 8 deluxe DLC"
+      ],
+      "image": "assets/images/emulation-pack.jpg"
+    }
+  ]
+}

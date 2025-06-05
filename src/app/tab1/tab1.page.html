@@ -1,17 +1,29 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-title>Waifuhideout Downloader</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <!-- Featured Games Section -->
+  <h2 class="section-title">Featured Games</h2>
+  <div class="featured-games">
+    <div *ngFor="let game of featuredGames" class="featured-item" >
+      <img [src]="game.imgUrl" alt="{{game.name}}" />
+      <p>{{ game.name }}</p>
+    </div>
+  </div>
+
+  <!-- Top Emulator Section -->
+  <h2 class="section-title">Top Emulator</h2>
+ <ion-card *ngFor="let emulator of topEmulators">
+  <img [src]="emulator.imgUrl" />
+  <ion-card-header>
+    <ion-card-title>{{ emulator.name }}</ion-card-title>
+  </ion-card-header>
+
+</ion-card>
+
+
 </ion-content>

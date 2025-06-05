@@ -1,0 +1,76 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Automation Tasks</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <!-- Install Firmware -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Install Firmware</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>This will install the latest firmware for the selected device.</p>
+      <ion-button expand="block" color="primary" (click)="installFirmware()">
+        Run Firmware Installer
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Setup Folder Structure -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Setup Folder Structure</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Select the base directory where folders should be created:</p>
+      <ion-input [(ngModel)]="selectedFolder" placeholder="e.g. C:/Users/YourName/Desktop/Wafiuhideout-Online"></ion-input>
+      <ion-button expand="block" color="success" (click)="setupFolders()">
+        Create Folders
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Download Tools -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Download Required Keys</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Automatically fetch and place all required keys for the emulator.</p>
+      <ion-button expand="block" color="tertiary" (click)="downloadTools()">
+        Download Tools
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Extract Files -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Extract Files</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Automatically extract archive files to the appropriate folder (Emulator, Game, DLC, etc).</p>
+      <ion-input [(ngModel)]="selectedFolderEx" placeholder="e.g. C:/Users/YourName/Desktop/Wafiuhideout-Online"></ion-input>
+      <ion-button expand="block" color="tertiary" (click)="chooseAndExtractFile()">
+        Extract File
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Status message (conditionally shown) -->
+  <ion-card *ngIf="statusMessage">
+    <ion-card-content class="ion-text-center">
+      <ion-spinner name="dots" color="primary" style="margin-bottom: 8px;"></ion-spinner>
+      <div>{{ statusMessage }}</div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-text color="medium" *ngIf="statusMessage">
+  <p class="ion-padding">{{ statusMessage }}</p>
+</ion-text>
+
+
+</ion-content>
