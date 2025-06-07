@@ -35,7 +35,7 @@ loadingId: string | null = null;
   openItem(item: any) {
     console.log('Download:', item.title);
   }
-download(item: any) {
+async download(item: any) {
   const url = item.downloadUrl;
   const fileName = url.split('/').pop() || 'download.bin';
   const basePath = localStorage.getItem('baseFolderPath');
@@ -70,26 +70,32 @@ download(item: any) {
 
   this.loadingId = item.id;
 
-  this.http.post('https://node-downloadserver.onrender.com/download-dynamic', {
-    url,
-    fileName,
-    basePath,
-    destinationType,
-    title: item.title || ''
-  }).subscribe({
-    next: (res: any) => {
-      this.loadingId = null;
-      this.presentToast('Download complete!');
-    },
-    error: (err) => {
-      this.loadingId = null;
-      console.error(err);
-      this.presentToast('Download failed.');
+  try {
+    const result = await window.electronAPI.downloadDynamic({
+      url,
+      fileName,
+      basePath,
+      destinationType,
+      title
+    });
+
+    this.loadingId = null;
+
+    if (result.error) {
+      console.error(result.error, result.details);
+      this.presentToast('Download failed: ' + (result.details || result.error), 'danger');
+    } else {
+      this.presentToast(result.message || 'Download complete!', 'success');
     }
-  });
+  } catch (err) {
+    this.loadingId = null;
+    console.error(err);
+    this.presentToast('Download failed.', 'danger');
+  }
 }
 
-async presentToast(message: string) {
+
+async presentToast(message: string, p0: string) {
   const toast = await this.toastController.create({
     message,
     duration: 2000,

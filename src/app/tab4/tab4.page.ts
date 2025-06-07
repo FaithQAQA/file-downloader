@@ -9,7 +9,6 @@ import { AlertController, ToastController, ActionSheetController } from '@ionic/
   standalone: false
 })
 export class Tab4Page {
-
   selectedFolder: string = '';
   selectedFolderEx: string = '';
   statusMessage: string = '';
@@ -21,6 +20,7 @@ export class Tab4Page {
     private actionSheetCtrl: ActionSheetController
   ) {}
 
+  // Toast helper
   async presentToast(message: string, color: string = 'primary') {
     const toast = await this.toastCtrl.create({
       message,
@@ -31,6 +31,7 @@ export class Tab4Page {
     await toast.present();
   }
 
+  // Prompt user to enter firmware folder path manually
   async presentFirmwarePrompt(): Promise<string | null> {
     return new Promise(async (resolve) => {
       const alert = await this.alertCtrl.create({
@@ -51,117 +52,143 @@ export class Tab4Page {
     });
   }
 
-  async downloadTools() {
-    let url = "https://drive.google.com/uc?export=download&id=1bHsCVs87NJL7IRkcWQaUW3sWevfxVQ6H";
-    const basePath = localStorage.getItem('baseFolderPath');
-
-    if (!basePath) return this.presentToast('Please set up a base folder path first.', 'warning');
-
-    const firmwareFolder = await this.presentFirmwarePrompt();
-    if (!firmwareFolder) return this.presentToast('Firmware folder path is required.', 'warning');
-
-    this.statusMessage = 'Starting firmware download...';
-
-    this.http.post('https://node-downloadserver.onrender.com/download-keys', {
-      url,
-      basePath,
-      type: "tool",
-      subtype: "firmware",
-      firmwarePath: firmwareFolder
-    }).subscribe({
-      next: (res: any) => {
-        this.statusMessage = 'Prod Keys downloaded and installed successfully.';
-        this.presentToast(res.message || 'Success', 'success');
-        setTimeout(() => this.statusMessage = '', 5000);
-      },
-      error: (err) => {
-        console.error(err);
-        this.statusMessage = 'Prod Keys download failed.';
-        this.presentToast('Download failed.', 'danger');
-        setTimeout(() => this.statusMessage = '', 5000);
-      }
-    });
+  // Pick folder for extraction base path
+  async pickFolderEx() {
+    const folder = await window.electronAPI.pickFolder();
+    if (folder) {
+      this.selectedFolderEx = folder;
+      this.presentToast(`Selected: ${folder}`, 'medium');
+    }
   }
 
+  // Pick base folder for setup
+  async pickFolder() {
+    const folderPath = await window.electronAPI.pickFolder();
+    if (folderPath) {
+      this.selectedFolder = folderPath;
+      await this.presentToast(`Selected folder: ${folderPath}`, 'medium');
+    } else {
+      await this.presentToast('Folder selection canceled.', 'warning');
+    }
+  }
+
+  // Create folder structure on backend
+async setupFolders() {
+  if (!this.selectedFolder) {
+    await this.presentToast('Please select a folder first.', 'warning');
+    return;
+  }
+
+  localStorage.setItem('baseFolderPath', this.selectedFolder);
+
+  try {
+    const result = await (window as any).electronAPI.createFolders(this.selectedFolder);
+
+    if (result.success) {
+      await this.presentToast('Folder setup complete.', 'success');
+    } else {
+      await this.presentToast(result.error || 'Error creating folders.', 'danger');
+    }
+  } catch (error) {
+    await this.presentToast('Failed to communicate with Electron.', 'danger');
+  }
+}
+
+
+  // Download keys/tools (calls electronAPI)
+  async downloadTools() {
+    const url = "https://drive.google.com/uc?export=download&id=1bHsCVs87NJL7IRkcWQaUW3sWevfxVQ6H";
+    const basePath = localStorage.getItem('baseFolderPath');
+
+    if (!basePath) {
+      return this.presentToast('Please set up a base folder path first.', 'warning');
+    }
+
+    const firmwareFolder = await this.presentFirmwarePrompt();
+    if (!firmwareFolder) {
+      return this.presentToast('Firmware folder path is required.', 'warning');
+    }
+
+    this.statusMessage = 'Starting firmware download...';
+    console.log(firmwareFolder)
+
+    try {
+  const result = await window.electronAPI.downloadKeys({
+  url,
+  type: 'tool',
+  subtype: 'firmware',
+    basePath: firmwareFolder   // this is what backend expects
+});
+
+
+      this.statusMessage = 'Prod Keys downloaded and extracted locally.';
+      await this.presentToast(result?.message || 'Success', 'success');
+    } catch (err) {
+      console.error(err);
+      this.statusMessage = 'Prod Keys download failed.';
+      await this.presentToast('Download failed.', 'danger');
+    } finally {
+      setTimeout(() => this.statusMessage = '', 5000);
+    }
+  }
+
+  // Install firmware task
   async installFirmware() {
     const url = "https://github.com/THZoria/NX_Firmware/releases/download/19.0.0/Firmware.19.0.0.zip";
     const basePath = localStorage.getItem('baseFolderPath');
 
-    if (!url.match(/\.(zip|7z|exe|rar|msi)$/i)) return window.open(url, '_blank');
-    if (!basePath) return this.presentToast('Please set up a base folder path first.', 'warning');
+    if (!url.match(/\.(zip|7z|exe|rar|msi)$/i)) {
+      return window.open(url, '_blank');
+    }
+    if (!basePath) {
+      return this.presentToast('Please set up a base folder path first.', 'warning');
+    }
 
     const fileName = url.split('/').pop();
     const firmwareFolder = await this.presentFirmwarePrompt();
-    if (!firmwareFolder) return this.presentToast('Firmware folder path is required.', 'warning');
+    if (!firmwareFolder) {
+      return this.presentToast('Firmware folder path is required.', 'warning');
+    }
 
     this.statusMessage = 'Starting firmware download...';
 
-    this.http.post('https://node-downloadserver.onrender.com/download-emulator', {
-      url,
-      fileName,
-      basePath,
-      type: "tool",
-      subtype: "firmware",
-      firmwarePath: firmwareFolder
-    }).subscribe({
-      next: (res: any) => {
-        this.statusMessage = 'Firmware downloaded and installed successfully.';
-        this.presentToast(res.message || 'Download complete.', 'success');
-        setTimeout(() => this.statusMessage = '', 5000);
-      },
-      error: (err) => {
-        console.error(err);
-        this.statusMessage = 'Firmware download failed.';
-        this.presentToast('Download failed.', 'danger');
-        setTimeout(() => this.statusMessage = '', 5000);
-      }
-    });
+    try {
+      const result = await window.electronAPI.downloadEmulator({
+        url,
+        fileName,
+        basePath,
+        type: "tool",
+        subtype: "firmware",
+        firmwarePath: firmwareFolder
+      });
+
+      if (result?.error) throw new Error(result.error);
+
+      this.statusMessage = 'Firmware downloaded and installed successfully.';
+      await this.presentToast(result.message || 'Download complete.', 'success');
+    } catch (err) {
+      console.error(err);
+      this.statusMessage = 'Firmware download failed.';
+      await this.presentToast('Download failed.', 'danger');
+    } finally {
+      setTimeout(() => this.statusMessage = '', 5000);
+    }
   }
 
-  pickFolder() {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.webkitdirectory = true;
-    input.onchange = () => {
-      const files = input.files;
-      if (files && files.length > 0) {
-        const path = files[0].webkitRelativePath.split('/')[0];
-        this.selectedFolder = path;
-        this.presentToast(`Selected: ${path}`, 'medium');
-      }
-    };
-    input.click();
+  // Select file to extract using Electron file picker
+  async chooseAndExtractFile() {
+    const filters = [
+      { name: 'Archives', extensions: ['zip', '7z', 'rar'] }
+    ];
+    const filePath = await window.electronAPI.pickFile(filters);
+    if (!filePath) {
+      await this.presentToast('File selection canceled.', 'warning');
+      return;
+    }
+    await this.presentExtractTypeSheet(filePath);
   }
 
-  setupFolders() {
-    if (!this.selectedFolder) return this.presentToast('Please select a folder first.', 'warning');
-
-    localStorage.setItem('baseFolderPath', this.selectedFolder);
-    this.http.post('https://node-downloadserver.onrender.com/create-folders', {
-      basePath: this.selectedFolder
-    }).subscribe({
-      next: (res: any) => this.presentToast('Folder setup complete.', 'success'),
-      error: () => this.presentToast('Error creating folders.', 'danger')
-    });
-
-    return
-  }
-
-  chooseAndExtractFile() {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = '.zip,.7z,.rar';
-    input.onchange = () => {
-      const file = input.files?.[0];
-      if (file) {
-        const fakePath = file.name;
-        const fullPath = this.selectedFolderEx;
-        this.presentExtractTypeSheet(fullPath);
-      }
-    };
-    input.click();
-  }
-
+  // Show action sheet to choose extraction target folder
   async presentExtractTypeSheet(filePath: string) {
     const sheet = await this.actionSheetCtrl.create({
       header: 'Select File Type',
@@ -177,6 +204,7 @@ export class Tab4Page {
     await sheet.present();
   }
 
+  // Call backend to extract archive to target directory
   extractFile(filePath: string, type: string) {
     const basePath = localStorage.getItem('baseFolderPath');
     if (!basePath) {
@@ -188,8 +216,8 @@ export class Tab4Page {
       archivePath: filePath,
       targetDir: `${basePath}/${type}`
     }).subscribe({
-      next: () => this.presentToast('File extracted successfully.', 'success'),
-      error: () => this.presentToast('Extraction failed.', 'danger')
+      next: async () => await this.presentToast('File extracted successfully.', 'success'),
+      error: async () => await this.presentToast('Extraction failed.', 'danger')
     });
   }
 }
