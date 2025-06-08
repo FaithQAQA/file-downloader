@@ -1,5 +1,5 @@
-const { app, BrowserWindow } = require('electron');
-
+const { app, BrowserWindow} = require('electron');
+const { autoUpdater } = require('electron-updater');
 
 const fs = require('fs-extra');
 const path = require('path');
@@ -520,9 +520,27 @@ function createWindow() {
   } else {
     // Dev server URL
     win.loadURL('https://file-downloader-tau.vercel.app/');
+
+      win.webContents.once('did-finish-load', () => {
+    autoUpdater.checkForUpdatesAndNotify();
+  });
   }
 }
 
+app.whenReady().then(() => {
+  createWindow();
+
+  autoUpdater.on('update-downloaded', () => {
+    dialog.showMessageBox({
+      type: 'info',
+      title: 'Update Ready',
+      message: 'A new version has been downloaded. Restart to apply it now?',
+      buttons: ['Restart', 'Later']
+    }).then(result => {
+      if (result.response === 0) autoUpdater.quitAndInstall();
+    });
+  });
+});
 app.whenReady().then(createWindow);
 app.whenReady().then(() => {
   createMainWindow();
