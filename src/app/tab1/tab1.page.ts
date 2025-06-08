@@ -23,7 +23,7 @@ export class Tab1Page {
     },
     {
       name: 'Mario kart 8 Switch',
-      imgUrl: 'https://assets.nintendo.com/image/upload/c_limit,f_auto,h_300,q_auto,w_500/v1/ncom/en_US/games/switch/m/mario-kart-8-deluxe-switch/Video/posters/Switch_Mario_Kart_8_Deluxe_Accolades_Trailer',
+      imgUrl: 'https://variety.com/wp-content/uploads/2023/11/mario-kart-wave-6-funky-kong.jpeg?w=1000&h=563&crop=1.png',
       downloadUrl: 'https://example.com/downloads/battle-quest.apk'
     },
   ];

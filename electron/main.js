@@ -504,24 +504,26 @@ ipcMain.handle('download-emulator', async (event, { url, fileName, basePath, typ
 });
 
 
-function createMainWindow() {
+function createWindow() {
   const win = new BrowserWindow({
-    width: 1200,
-    height: 800,
+    width: 800,
+    height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
-      contextIsolation: true,
-      nodeIntegration: false
+      // nodeIntegration: false, contextIsolation: true, etc.
     }
   });
 
-  // Load your frontend here (e.g., index.html or Vite/React app, etc.)
-  // If you're using Vite/Vercel during development:
-  win.loadURL('http://localhost:4200'); // Or wherever your frontend dev server runs
-  // In production:
-  // win.loadFile('dist/index.html');
+  if (app.isPackaged) {
+    // Load local files after build
+      win.loadFile(path.join(__dirname, '../dist/browser/index.html'));
+  } else {
+    // Dev server URL
+    win.loadURL('https://file-downloader-tau.vercel.app/');
+  }
 }
 
+app.whenReady().then(createWindow);
 app.whenReady().then(() => {
   createMainWindow();
 

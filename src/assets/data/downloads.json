@@ -11,15 +11,15 @@
       {
       "type": "game",
       "title": "Mario Party Superstars",
-      "image": "https://assets.nintendo.com/image/upload/q_auto/f_auto/ncom/software/switch/70010000042934/ae43ce2e25afbc4c069c2920075ead01a84f02dfe55b87876268409f6ccc0304",
+      "image": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000014158/0ca41128bf40b7e0dc32a046a659ecdc69e4d7cc7a3257d6280be665d2f795b5",
       "downloadUrl": "https://www.ziperto.com/mario-party-superstars-switch/"
 
     },
 
          {
       "type": "game",
-      "title": "Smash Bros",
-      "image": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000012332/ac4d1fc9824876ce756406f0525d50c57ded4b2a666f6dfe40a6ac5c3563fad9",
+      "title": "Super Smash Bros",
+      "image": "https://www.smashbros.com/assets_v2/img/top/hero05_en.jpg",
       "downloadUrl": "https://www.ziperto.com/super-smash-bros-ultimate-switch/"
 
     },
@@ -29,7 +29,7 @@
          {
       "type": "game",
       "title": "Super Mario Party™ Jamboree",
-      "image": "https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/ncom/software/switch/70010000084608/ba0572bf9d840b03bf9958809943fb3c76c3adfd6d8f2704b0f1b766f8aa4027",
+      "image": "https://static.wikia.nocookie.net/logopedia/images/0/0d/Super_Mario_Party_Jamboree.png/revision/latest?cb=20240619043446",
       "downloadUrl": "https://www.ziperto.com/super-mario-party-jamboree-switch/"
 
     },
@@ -38,20 +38,14 @@
             {
       "type": "game",
       "title": "Luigi’s Mansion™ 3",
-      "image": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000001620/2b166fb3197dacfde1d939acd6a976b9fbe3b1a32c54f9f0d2c8d23efb22412d",
+      "image": "https://assets1.ignimgs.com/thumbs/userUploaded/2019/10/26/luigiblogroll2-1572116279551.jpg",
       "downloadUrl": "https://nxbrew.net/luigis-mansion-3-switch-nsp-xci-nsz/"
 
     },
 
 
 
-      {
-      "type": "game",
-      "title": "Mario Kart Wii",
-      "image": "https://cdn2.steamgriddb.com/logo/63d4cd43646876727448aa8e6b9f7a51.png",
-      "downloadUrl": "https://vimm.net/vault/63650"
 
-    },
     {
       "type": "emulator",
       "title": "Eden",
